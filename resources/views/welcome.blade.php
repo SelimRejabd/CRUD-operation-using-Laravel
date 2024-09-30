@@ -18,6 +18,7 @@
                     <th>Salary</th>
                     <th>Mobile No</th>
                     <th>Address</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +32,13 @@
                         <td>{{ $item->salary }}</td>
                         <td>{{ $item->mobile_no }}</td>
                         <td>{{ $item->address }}</td>
+                        <td>
+                            <form action={{ route('delete', $item->id) }} method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="Delete" class="btn btn-danger">
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

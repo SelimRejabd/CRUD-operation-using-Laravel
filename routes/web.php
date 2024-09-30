@@ -24,4 +24,6 @@ Route::get('/add', [EmployeesController::class, 'create'])->name('add');
 
 Route::post('/add', [EmployeesController::class,'addEmployee'])->name('addEmployee');
 
+Route::delete('/delete/{id}', [EmployeesController::class,'delete'])->name('delete');
+
 

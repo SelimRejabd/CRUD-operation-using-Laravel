@@ -56,9 +56,14 @@ class EmployeesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function delete(Request $request, $id)
     {
         //
+         $employees = Employees::find($id);
+        $employees->delete();
+        return redirect('/');
+        //var_dump('delete'. $id);
+
     }
 
     /**

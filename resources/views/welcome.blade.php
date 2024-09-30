@@ -29,15 +29,16 @@
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->job_title }}</td>
                         <td>{{ $item->joining_date }}</td>
-                        <td>{{ $item->salary }}</td>
+                        <td>${{ $item->salary }}</td>
                         <td>{{ $item->mobile_no }}</td>
                         <td>{{ $item->address }}</td>
                         <td>
                             <form action={{ route('delete', $item->id) }} method="post">
                                 @csrf
                                 @method('delete')
-                                <input type="submit" value="Delete" class="btn btn-danger">
+                                <input type="submit" value="Delete" class="btn btn-danger w-100">
                             </form>
+                            <button class="btn btn-primary w-100"><a href={{ route('editPage', $item->id) }} class="text-white">Edit</a></button>
                         </td>
                     </tr>
                 @endforeach

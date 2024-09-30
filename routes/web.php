@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [EmployeesController::class, 'index']);
+Route::get('/', [EmployeesController::class, 'index'])->name('index');
 
 Route::get('/add', [EmployeesController::class, 'create'])->name('add');
 
@@ -26,4 +26,6 @@ Route::post('/add', [EmployeesController::class,'addEmployee'])->name('addEmploy
 
 Route::delete('/delete/{id}', [EmployeesController::class,'delete'])->name('delete');
 
+Route::get('/edit/{id}', [EmployeesController::class, 'editPage'])->name('editPage');
 
+Route::post('/edit/{id}', [EmployeesController::class,'edit'])->name('edit');

@@ -30,24 +30,31 @@ class EmployeesController extends Controller
         return view('employees.create');
     }
 
+    public function editPage(Request $request)
+    {
+        $employee = Employees::find($request->id);
+        return view('employees.edit')->with('employee', $employee);
+    }
+
     public function addEmployee(Request $request)
     {
         // var_dump($request->all());
 
-        
+
 
         $validated = $request->validate([
             'name' => 'required|max:255|string',
-            'email'=> 'required|email|unique',
-            'salary'=> 'required|numeric',
-            'job_title'=> 'required|string',
-            'joining_date'=> 'required|date',
-            'address'=> 'required|string',
-            'mobile_no'=> 'required|numeric',
+            'email' => 'required|email|unique:employees,email',
+            'salary' => 'required|numeric',
+            'job_title' => 'required|string',
+            'joining_date' => 'required|date',
+            'address' => 'required|string',
+            'mobile_no' => 'required|numeric',
         ]);
 
         $data = $request->all();
         $employees = Employees::create($data);
+        return redirect('/');
     }
 
     /**
@@ -59,7 +66,7 @@ class EmployeesController extends Controller
     public function delete(Request $request, $id)
     {
         //
-         $employees = Employees::find($id);
+        $employees = Employees::find($id);
         $employees->delete();
         return redirect('/');
         //var_dump('delete'. $id);
@@ -83,10 +90,24 @@ class EmployeesController extends Controller
      * @param  \App\Models\Employees  $employees
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employees $employees)
+    public function edit(Request $request, $id)
     {
-        //
+
+        $employee = Employees::find($id);
+
+        $employee->name = $request->input('name');
+        $employee->email = $request->input('email');
+        $employee->address = $request->input('address');
+        $employee->mobile_no = $request->input('mobile_no');
+        $employee->salary = $request->input('salary');
+        $employee->joining_date = $request->input('joining_date');
+        $employee->job_title = $request->input('job_title');
+
+        $employee->save();
+
+        return redirect()->route('index')->with('success', 'Employee updated successfully.');
     }
+
 
     /**
      * Update the specified resource in storage.

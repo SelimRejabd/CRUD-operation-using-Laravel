@@ -27,6 +27,27 @@ class EmployeesController extends Controller
     public function create()
     {
         //
+        return view('employees.create');
+    }
+
+    public function addEmployee(Request $request)
+    {
+        // var_dump($request->all());
+
+        
+
+        $validated = $request->validate([
+            'name' => 'required|max:255|string',
+            'email'=> 'required|email|unique',
+            'salary'=> 'required|numeric',
+            'job_title'=> 'required|string',
+            'joining_date'=> 'required|date',
+            'address'=> 'required|string',
+            'mobile_no'=> 'required|numeric',
+        ]);
+
+        $data = $request->all();
+        $employees = Employees::create($data);
     }
 
     /**

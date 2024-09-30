@@ -4,6 +4,7 @@
     <br>
 
     <h1 class="text-center text-primary">Welcome to Employee Information System</h1>
+    <button class="btn btn-primary"><a href={{ route('add') }} class="text-white">Add Employee</a></button>
     
     <div class="container mt-4">
         <table class="table table-bordered table-striped table-hover">
